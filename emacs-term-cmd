@@ -1,0 +1,18 @@
+#!/bin/sh
+
+usage()
+{
+    echo "Usage: $(basename "${0}") command [arg]"
+    exit 1
+}
+
+test -z "${1}" && usage
+CMD="${1}"
+
+if [ ! -z "${2}" ]; then
+    ARG=" ${2}"
+else
+    ARG=''
+fi
+
+"$(which printf)" '\eTeRmCmD %s%s\n' "${CMD}" "${ARG}"
