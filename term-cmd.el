@@ -3,6 +3,8 @@
 ;; Copyright (C) 2014 Callum J. Cameron
 
 ;; Author: Callum J. Cameron <cjcameron7@gmail.com>
+;; Version: 1.0
+;; Url: https://github.com/CallumCameron/term-cmd
 ;; Keywords: processes
 
 ;; This file is not part of GNU Emacs.
@@ -103,7 +105,7 @@ and arg.  Arg can also be omitted if it is not required.")
 (defvar term-cmd--partial-ansi-terminal-message nil)
 (make-local-variable 'term-cmd--partial-ansi-terminal-message)
 
-
+;;;###autoload
 (defun term-cmd--do-command (message)
   "Scan MESSAGE for any commands, execute them, and return the remaining message."
 
@@ -171,6 +173,7 @@ and arg.  Arg can also be omitted if it is not required.")
 
 ;; The main advice that makes everything work.
 
+;;;###autoload
 (defadvice term-handle-ansi-terminal-messages (around term-cmd--advice activate)
   "Process any term-cmd commands before passing the remaining input on to term.el."
   (ad-set-arg 0 (term-cmd--do-command (ad-get-arg 0)))
