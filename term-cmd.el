@@ -43,13 +43,6 @@
 ;; For an example of something that actually uses it, see the
 ;; 'term-alert' package (https://github.com/CallumCameron/term-alert).
 ;;
-;; Installation:
-;;
-;; 1. Make sure this file is on your load path
-;; 2. (require 'term-cmd)
-;;
-;; There is also a shell script, 'emacs-term-cmd', in this package's
-;; git repository, which makes sending commands easier.
 ;;
 ;; Usage:
 ;;
@@ -82,6 +75,15 @@
 ;;
 ;; Because the commands are based on terminal output, they work just
 ;; as well through nested shells, or multiple SSH sessions.
+;;
+;;
+;; Installation:
+;;
+;; 1. Make sure this file is on your load path
+;; 2. (require 'term-cmd)
+;;
+;; There is also a shell script, 'emacs-term-cmd', in this package's
+;; git repository, which makes sending commands easier.
 
 ;;; Code:
 
