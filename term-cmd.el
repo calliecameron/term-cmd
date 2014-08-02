@@ -83,6 +83,7 @@
 
 (require 'term)
 
+;;;###autoload
 (defvar term-cmd-commands-alist '()
   "Commands to run based on process output.
 Elements should be of the form (<string> . <func>) where string is the
