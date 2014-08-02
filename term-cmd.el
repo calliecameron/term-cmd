@@ -54,8 +54,10 @@
 ;; Usage:
 ;;
 ;; To register a command:
+;;
 ;;     (add-to-list 'term-cmd-commands-alist
 ;;                  '("command" . some-callback-function))
+;;
 ;; where "command" is the name of the command, and
 ;; some-callback-function is the function you want to be called when
 ;; the command is run.  The function should take two arguments -- the
@@ -64,6 +66,7 @@
 ;;
 ;; To send a command, just print the magic escape sequence in some
 ;; program in the terminal:
+;;
 ;;     # Using GNU printf
 ;;     /usr/bin/printf '\eTeRmCmD %s %s\n' "${CMD}" "${ARG}"
 ;;
@@ -74,6 +77,7 @@
 ;; argument if you don't need it.
 ;;
 ;; Alternatively, use the 'emacs-term-cmd' script:
+;;
 ;;     emacs-term-cmd command arg
 ;;
 ;; Because the commands are based on terminal output, they work just
