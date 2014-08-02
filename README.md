@@ -10,14 +10,6 @@ This package lets you add new commands. It uses a different magic escape sequenc
 Note: this is a library, and doesn't make any user-visible changes. For an example of something that actually uses it, see [term-alert](https://github.com/CallumCameron/term-alert).
 
 
-Installation
-------------
-
-1. Add this directory to your Emacs load path
-2. Add this directory to your PATH
-3. `(require 'term-cmd)`
-
-
 Usage
 -----
 
@@ -42,6 +34,14 @@ Alternatively, use the `emacs-term-cmd` script:
     emacs-term-cmd command arg
 
 Because the commands are based on terminal output, they work just as well through nested shells, or multiple SSH sessions.
+
+
+Installation
+------------
+
+1. Add this directory to your Emacs load path
+2. Add this directory to your PATH
+3. `(require 'term-cmd)`
 
 
 License
