@@ -157,6 +157,7 @@ and arg.  Arg can also be omitted if it is not required.")
 ;; http://debbugs.gnu.org/cgi/bugreport.cgi?bug=17231), but that patch
 ;; never got in, so I might as well do it here, right?
 
+;;;###autoload
 (defun term-cmd--ansi-partial-beginning-check (message)
   "Handle stored partial commands for built-in commands in MESSAGE."
   (when term-cmd--partial-ansi-terminal-message
@@ -164,6 +165,7 @@ and arg.  Arg can also be omitted if it is not required.")
     (setq term-cmd--partial-ansi-terminal-message nil))
   message)
 
+;;;###autoload
 (defun term-cmd--ansi-partial-end-check (message)
   "Handle partial built-in commands at the end of MESSAGE."
   (when (string-match "\eAnSiT.+$" message)
