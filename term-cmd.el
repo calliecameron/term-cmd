@@ -104,14 +104,6 @@ and arg.  Arg can also be omitted if it is not required.")
 (make-local-variable 'term-cmd--partial-ansi-terminal-message)
 
 
-(defadvice term-handle-ansi-terminal-messages (around term-cmd--advice activate)
-  "Process any term-cmd commands before passing the remaining input on to term.el."
-  (ad-set-arg 0 (term-cmd--do-command (ad-get-arg 0)))
-  (ad-set-arg 0 (term-cmd--ansi-partial-beginning-check (ad-get-arg 0)))
-  ad-do-it
-  (setq ad-return-value (term-cmd--ansi-partial-end-check ad-return-value)))
-
-
 (defun term-cmd--do-command (message)
   "Scan MESSAGE for any commands, execute them, and return the remaining message."
 
@@ -175,6 +167,16 @@ and arg.  Arg can also be omitted if it is not required.")
     (setq term-cmd--partial-ansi-terminal-message (match-string 0 message))
     (setq message (replace-match "" t t message)))
   message)
+
+
+;; The main advice that makes everything work.
+
+(defadvice term-handle-ansi-terminal-messages (around term-cmd--advice activate)
+  "Process any term-cmd commands before passing the remaining input on to term.el."
+  (ad-set-arg 0 (term-cmd--do-command (ad-get-arg 0)))
+  (ad-set-arg 0 (term-cmd--ansi-partial-beginning-check (ad-get-arg 0)))
+  ad-do-it
+  (setq ad-return-value (term-cmd--ansi-partial-end-check ad-return-value)))
 
 
 (provide 'term-cmd)
