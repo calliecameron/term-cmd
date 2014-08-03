@@ -79,6 +79,10 @@
 ;;
 ;; Installation:
 ;;
+;; Install the 'term-cmd' package from MELPA.
+;;
+;; Or, for a manual install:
+;;
 ;; 1. Make sure this file is on your load path
 ;; 2. (require 'term-cmd)
 ;;

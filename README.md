@@ -39,8 +39,12 @@ Because the commands are based on terminal output, they work just as well throug
 Installation
 ------------
 
+Install the `term-cmd` package from MELPA.
+
+Or for a manual install:
+
 1. Add this directory to your Emacs load path
-2. Add this directory to your PATH
+2. Add this directory to your PATH (for `emacs-term-cmd` script; optional)
 3. `(require 'term-cmd)`
 
 
