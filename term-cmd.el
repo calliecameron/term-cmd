@@ -1,4 +1,4 @@
-;;; term-cmd.el --- Send commands to Emacs from programs running in the term.el terminal emulator
+;;; term-cmd.el --- Send commands to Emacs from programs running under term.el
 
 ;; Copyright (C) 2014 Callum J. Cameron
 
