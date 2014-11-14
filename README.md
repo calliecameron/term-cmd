@@ -33,7 +33,7 @@ Alternatively, use the `emacs-term-cmd` script:
 
     emacs-term-cmd command arg
 
-Because the commands are based on terminal output, they work just as well through nested shells, or multiple SSH sessions.
+Because the commands are based on terminal output, they work just as well through nested shells, or multiple SSH sessions. See the emacs-term-cmd script for how to pass commands through from tmux (not 100% reliable, and unfortunately doesn't support screen).
 
 
 Installation

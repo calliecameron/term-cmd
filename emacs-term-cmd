@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-usage()
+function usage()
 {
     echo "Usage: $(basename "${0}") command [arg]"
     exit 1
@@ -15,4 +15,14 @@ else
     ARG=''
 fi
 
-"$(which printf)" '\eTeRmCmD %s%s\n' "${CMD}" "${ARG}"
+
+# Sanity check before printing; not foolproof, unfortunately (try
+# tmux, then ssh). Screen uses a different escape sequence from tmux,
+# but there doesn't seem to be a definitive way to distinguish between
+# the two. :-(
+if [[ "${TERM}" =~ 'eterm' ]]; then
+    env printf '\033TeRmCmD %s%s\n' "${CMD}" "${ARG}"
+elif [ "${TERM}" = 'screen' ] && [ ! -z "${TMUX}" ] &&
+         [[ "$(tmux display-message -p '#{client_termname}')" =~ 'eterm' ]]; then
+    env printf '\033Ptmux;\033\033TeRmCmD %s%s\n\033\\' "${CMD}" "${ARG}"
+fi
