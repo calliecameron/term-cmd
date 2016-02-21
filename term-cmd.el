@@ -136,7 +136,9 @@ and arg.  Arg can also be omitted if it is not required.")
       ;; Remove the command from the message that will eventually be printed
       (setq message (replace-match "" t t message))
 
-      (when (string-match "\r$" matched)
+      ;; At least Bash inserts '\r\r' instead of just '\r' before '\n'
+      ;; in the magic sequence received by Emacs.
+      (when (string-match "\r+$" matched)
         (setq matched (replace-match "" t t matched)))
 
       (if (string-match " " matched)
