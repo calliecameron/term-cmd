@@ -1,7 +1,7 @@
 (source gnu)
 (source melpa)
 
-(package "term-cmd" "1.1" "Send commands to Emacs from programs running under term.el.")
+(package "term-cmd" "1.1" "Send commands from programs running in term.el.")
 
 (files "*.el" "bin")
 

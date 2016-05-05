@@ -21,8 +21,8 @@ fi
 # but there doesn't seem to be a definitive way to distinguish between
 # the two. :-(
 if [[ "${TERM}" =~ 'eterm' ]]; then
-    env printf '\033TeRmCmD %s%s\n' "${CMD}" "${ARG}"
+    printf '\033TeRmCmD %s%s\n' "${CMD}" "${ARG}"
 elif [ "${TERM}" = 'screen' ] && [ ! -z "${TMUX}" ] &&
          [[ "$(tmux display-message -p '#{client_termname}')" =~ 'eterm' ]]; then
-    env printf '\033Ptmux;\033\033TeRmCmD %s%s\n\033\\' "${CMD}" "${ARG}"
+    printf '\033Ptmux;\033\033TeRmCmD %s%s\n\033\\' "${CMD}" "${ARG}"
 fi
