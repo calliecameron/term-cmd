@@ -5,6 +5,7 @@
 
 (files "*.el" "bin")
 
+(depends-on "dash")
 (depends-on "f")
 
 (development

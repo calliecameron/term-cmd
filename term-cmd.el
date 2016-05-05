@@ -6,7 +6,7 @@
 ;; Version: 1.1
 ;; Url: https://github.com/CallumCameron/term-cmd
 ;; Keywords: processes
-;; Package-Requires: ((emacs "24.0") (f "0.0"))
+;; Package-Requires: ((emacs "24.0") (dash "0.0") (f "0.0"))
 
 ;; This file is not part of GNU Emacs.
 
@@ -95,6 +95,7 @@
 ;;; Code:
 
 (require 'term)
+(require 'dash)
 (require 'f)
 
 ;;;###autoload
@@ -190,15 +191,49 @@ and arg.  Arg can also be omitted if it is not required.")
   message)
 
 
-;; The main advice that makes everything work.
+
 
 ;;;###autoload
-(defadvice term-handle-ansi-terminal-messages (around term-cmd--advice activate)
-  "Process any term-cmd commands before passing the remaining input on to term.el."
-  (ad-set-arg 0 (term-cmd--do-command (ad-get-arg 0)))
-  (ad-set-arg 0 (term-cmd--ansi-partial-beginning-check (ad-get-arg 0)))
-  ad-do-it
-  (setq ad-return-value (term-cmd--ansi-partial-end-check ad-return-value)))
+(defun term-cmd--init ()
+  "Internal term-cmd initialisation function."
+  ;; Make sure emacs-term-cmd is on the path for any shells launched
+  ;; directly through term.el. However, it should also be on the path
+  ;; in other shells (e.g. tmux, ssh sessions) so that it still works
+  ;; if one of them happens to end up running under term.el; for this
+  ;; the user must add it in their shell startup scripts. The script's
+  ;; location changes when the package is updated through package.el,
+  ;; so we copy it to a standard location to save the user having to
+  ;; tweak their scripts whenever the package is updated.
+  (defconst term-cmd--bin-dir (f-join user-emacs-directory "term-cmd"))
+  (defconst term-cmd--executable-name "emacs-term-cmd")
+  (defconst term-cmd--executable-abs (f-join term-cmd--bin-dir term-cmd--executable-name))
+
+  (f-mkdir user-emacs-directory)
+  (f-mkdir term-cmd--bin-dir)
+  (when (f-exists? term-cmd--executable-abs)
+    (f-delete term-cmd--executable-abs))
+  (f-copy
+   (f-join (f-parent load-file-name) "bin" term-cmd--executable-name)
+   term-cmd--executable-abs)
+
+  (when
+      (not (string=
+            (executable-find term-cmd--executable-name)
+            term-cmd--executable-abs))
+    (message "term-cmd: please add '%s' to the PATH in your environment or shell's startup file (e.g. ~/.profile, ~/.bashrc, ~/.zshrc, etc.). Term-cmd will work in shells launched directly from Emacs even if you don't, but it will only work in tmux and ssh sessions if you do." term-cmd--bin-dir)
+    (add-to-list 'exec-path term-cmd--bin-dir)
+    (setenv "PATH" (concat term-cmd--bin-dir path-separator (getenv "PATH"))))
+
+  ;; The main advice that makes everything work.
+  (defadvice term-handle-ansi-terminal-messages (around term-cmd--advice activate)
+    "Process any term-cmd commands before passing the remaining input on to term.el."
+    (ad-set-arg 0 (term-cmd--do-command (ad-get-arg 0)))
+    (ad-set-arg 0 (term-cmd--ansi-partial-beginning-check (ad-get-arg 0)))
+    ad-do-it
+    (setq ad-return-value (term-cmd--ansi-partial-end-check ad-return-value))))
+
+;;;###autoload
+(term-cmd--init)
 
 
 (provide 'term-cmd)

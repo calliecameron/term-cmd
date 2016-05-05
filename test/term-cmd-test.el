@@ -27,14 +27,24 @@
 (defconst term-cmd-test--root (f-parent (f-parent load-file-name)))
 (defconst term-cmd-test--bin (f-join term-cmd-test--root "bin"))
 
+(setq user-emacs-directory (f-join term-cmd-test--root "emacs.d"))
+
 (add-to-list 'load-path term-cmd-test--root)
 
 (require 'term-cmd)
 
-
-(ert-deftest term-cmd-path ()
-  (should (-contains? exec-path term-cmd-test--bin))
-  (should (-contains? (s-split path-separator (getenv "PATH")) term-cmd-test--bin))
-  (should (string= (executable-find "emacs-term-cmd") (f-join term-cmd-test--bin "emacs-term-cmd"))))
+(ert-deftest term-cmd-executable ()
+  (should (-contains? exec-path term-cmd--bin-dir))
+  (should (-contains? (s-split path-separator (getenv "PATH")) term-cmd--bin-dir))
+  (should (string= (executable-find term-cmd--executable-name) term-cmd--executable-abs))
+  (should (eq (call-process
+               "cmp"
+               nil
+               nil
+               nil
+               "-s"
+               (f-join term-cmd-test--bin term-cmd--executable-name)
+               term-cmd--executable-abs)
+              0)))
 
 ;;; term-cmd-test.el ends here
