@@ -1,8 +1,8 @@
 term-cmd
 ========
 
-[![Melpa Status](https://melpa.org/packages/term-cmd-badge.svg)](https://melpa.org/#/term-cmd)
-[![Melpa Stable Status](https://stable.melpa.org/packages/term-cmd-badge.svg)](https://stable.melpa.org/#/term-cmd)
+[![MELPA](https://melpa.org/packages/term-cmd-badge.svg)](https://melpa.org/#/term-cmd)
+[![MELPA Stable](https://stable.melpa.org/packages/term-cmd-badge.svg)](https://stable.melpa.org/#/term-cmd)
 
 Send commands to Emacs from programs running in term.el.
 
