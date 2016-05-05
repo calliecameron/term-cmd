@@ -1,11 +1,12 @@
-;;; term-cmd.el --- Send commands to Emacs from programs running under term.el
+;;; term-cmd.el --- Send commands from programs running in term.el. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2014 Callum J. Cameron
+;; Copyright (C) 2014-2016 Callum J. Cameron
 
 ;; Author: Callum J. Cameron <cjcameron7@gmail.com>
-;; Version: 1.0
+;; Version: 1.1
 ;; Url: https://github.com/CallumCameron/term-cmd
 ;; Keywords: processes
+;; Package-Requires: ((emacs "24.0") (f "0.0"))
 
 ;; This file is not part of GNU Emacs.
 
@@ -94,6 +95,7 @@
 ;;; Code:
 
 (require 'term)
+(require 'f)
 
 ;;;###autoload
 (defvar term-cmd-commands-alist '()

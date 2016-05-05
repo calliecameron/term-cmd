@@ -1,2 +1,5 @@
 *~
 *.elc
+.cask
+emacs.d
+dist
