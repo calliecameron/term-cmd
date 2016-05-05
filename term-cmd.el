@@ -194,7 +194,7 @@ and arg.  Arg can also be omitted if it is not required.")
   ;; location changes when the package is updated through package.el,
   ;; so we copy it to a standard location to save the user having to
   ;; tweak their scripts whenever the package is updated.
-  (defconst term-cmd--bin-dir (f-join user-emacs-directory "term-cmd"))
+  (defconst term-cmd--bin-dir (f-expand (f-join user-emacs-directory "term-cmd")))
   (defconst term-cmd--executable-name "emacs-term-cmd")
   (defconst term-cmd--executable-abs (f-join term-cmd--bin-dir term-cmd--executable-name))
 
