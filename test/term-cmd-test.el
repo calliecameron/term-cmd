@@ -34,6 +34,8 @@
 (require 'term-cmd)
 
 (ert-deftest term-cmd-executable ()
+  (should (f-directory? term-cmd--bin-dir))
+  (should (f-file? term-cmd--executable-abs))
   (should (-contains? exec-path term-cmd--bin-dir))
   (should (-contains? (s-split path-separator (getenv "PATH")) term-cmd--bin-dir))
   (should (string= (executable-find term-cmd--executable-name) term-cmd--executable-abs))
