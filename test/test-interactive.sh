@@ -7,6 +7,7 @@ cask package &&
 cd ~ &&
 emacs -Q --eval \
 "(progn
+   (setq debug-on-error t)
    (setq user-emacs-directory \"${THIS_DIR}/../emacs.d/\")
    (require 'package)
    (setq package-archives '((\"melpa-stable\" . \"https://stable.melpa.org/packages/\")

@@ -47,4 +47,7 @@
                term-cmd--executable-abs)
               0)))
 
+(ert-deftest term-cmd-advice ()
+  (should (advice-member-p 'term-cmd--advice 'term-handle-ansi-terminal-messages)))
+
 ;;; term-cmd-test.el ends here

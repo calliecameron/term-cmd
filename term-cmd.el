@@ -215,12 +215,15 @@ and arg.  Arg can also be omitted if it is not required.")
     (setenv "PATH" (concat term-cmd--bin-dir path-separator (getenv "PATH"))))
 
   ;; The main advice that makes everything work.
-  (defadvice term-handle-ansi-terminal-messages (around term-cmd--advice activate)
+  (defun term-cmd--advice (orig-func &rest args)
     "Process any term-cmd commands before passing the remaining input on to term.el."
-    (ad-set-arg 0 (term-cmd--do-command (ad-get-arg 0)))
-    (ad-set-arg 0 (term-cmd--ansi-partial-beginning-check (ad-get-arg 0)))
-    ad-do-it
-    (setq ad-return-value (term-cmd--ansi-partial-end-check ad-return-value))))
+    (let ((msg (car args)))
+      (setq msg (term-cmd--do-command msg))
+      (setq msg (term-cmd--ansi-partial-beginning-check msg))
+      (setq msg (apply orig-func (list msg)))
+      (term-cmd--ansi-partial-end-check msg)))
+
+  (advice-add 'term-handle-ansi-terminal-messages :around 'term-cmd--advice))
 
 ;;;###autoload
 (term-cmd--init)
