@@ -181,7 +181,21 @@ and arg.  Arg can also be omitted if it is not required.")
   message)
 
 
+;; The main advice that makes everything work.
+;;;###autoload
+(defun term-cmd--advice (orig-func &rest args)
+  ; checkdoc-params: (orig-func args)
+  "Process any term-cmd commands before passing the remaining input on to term.el."
+  (let ((msg (car args)))
+    (setq msg (term-cmd--do-command msg))
+    (setq msg (term-cmd--ansi-partial-beginning-check msg))
+    (setq msg (apply orig-func (list msg)))
+    (term-cmd--ansi-partial-end-check msg)))
 
+
+(defconst term-cmd--bin-dir (f-expand (f-join user-emacs-directory "term-cmd")))
+(defconst term-cmd--executable-name "emacs-term-cmd")
+(defconst term-cmd--executable-abs (f-join term-cmd--bin-dir term-cmd--executable-name))
 
 ;;;###autoload
 (defun term-cmd--init ()
@@ -194,10 +208,6 @@ and arg.  Arg can also be omitted if it is not required.")
   ;; location changes when the package is updated through package.el,
   ;; so we copy it to a standard location to save the user having to
   ;; tweak their scripts whenever the package is updated.
-  (defconst term-cmd--bin-dir (f-expand (f-join user-emacs-directory "term-cmd")))
-  (defconst term-cmd--executable-name "emacs-term-cmd")
-  (defconst term-cmd--executable-abs (f-join term-cmd--bin-dir term-cmd--executable-name))
-
   (f-mkdir user-emacs-directory)
   (f-mkdir term-cmd--bin-dir)
   (when (f-exists? term-cmd--executable-abs)
@@ -213,15 +223,6 @@ and arg.  Arg can also be omitted if it is not required.")
     (message "term-cmd: please add '%s' to the PATH in your environment or shell's startup file (e.g. ~/.profile, ~/.bashrc, ~/.zshrc, etc.). Term-cmd will work in shells launched directly from Emacs even if you don't, but it will only work in tmux and ssh sessions if you do." term-cmd--bin-dir)
     (add-to-list 'exec-path term-cmd--bin-dir)
     (setenv "PATH" (concat term-cmd--bin-dir path-separator (getenv "PATH"))))
-
-  ;; The main advice that makes everything work.
-  (defun term-cmd--advice (orig-func &rest args)
-    "Process any term-cmd commands before passing the remaining input on to term.el."
-    (let ((msg (car args)))
-      (setq msg (term-cmd--do-command msg))
-      (setq msg (term-cmd--ansi-partial-beginning-check msg))
-      (setq msg (apply orig-func (list msg)))
-      (term-cmd--ansi-partial-end-check msg)))
 
   (advice-add 'term-handle-ansi-terminal-messages :around 'term-cmd--advice))
 
