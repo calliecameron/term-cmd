@@ -10,4 +10,4 @@ test:
 	test/test-interactive.sh
 
 clean:
-	rm -rf dist emacs.d *.elc *~ test/*~ bin/*~
+	rm -rf dist emacs.d .cask *.elc *~ test/*~ bin/*~

@@ -6,7 +6,7 @@
 ;; Version: 1.1
 ;; Url: https://github.com/CallumCameron/term-cmd
 ;; Keywords: processes
-;; Package-Requires: ((emacs "24.0") (dash "0.0") (f "0.0"))
+;; Package-Requires: ((emacs "24.0") (dash "2.12.0") (f "0.18.2"))
 
 ;; This file is not part of GNU Emacs.
 
