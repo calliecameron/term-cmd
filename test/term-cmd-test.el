@@ -33,6 +33,10 @@
 
 (require 'term-cmd)
 
+;; These tests can't check that the library actually works
+;; (test-interactive.sh does that), only that various surrounding
+;; pieces are set up correctly.
+
 (ert-deftest term-cmd-executable ()
   (should (f-directory? term-cmd--bin-dir))
   (should (f-file? term-cmd--executable-abs))
