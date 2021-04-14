@@ -1,10 +1,10 @@
 ;;; term-cmd.el --- Send commands from programs running in term.el. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2014-2016 Callum J. Cameron
+;; Copyright (C) 2014-2016 Callie Cameron
 
-;; Author: Callum J. Cameron <cjcameron7@gmail.com>
+;; Author: Callie Cameron <cjcameron7@gmail.com>
 ;; Version: 1.1
-;; Url: https://github.com/CallumCameron/term-cmd
+;; Url: https://github.com/calliecameron/term-cmd
 ;; Keywords: processes
 ;; Package-Requires: ((emacs "24.0") (dash "2.12.0") (f "0.18.2"))
 
@@ -41,7 +41,7 @@
 ;;
 ;; This is a library, and doesn't make any user-visible changes.  For
 ;; an example of something that uses it, see the 'term-alert' package
-;; (https://github.com/CallumCameron/term-alert).
+;; (https://github.com/calliecameron/term-alert).
 ;;
 ;;
 ;; Usage

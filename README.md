@@ -18,7 +18,7 @@ show up on the screen, but will instead be interpreted by Emacs.
 
 This is a library, and doesn't make any user-visible changes. For an
 example of something that uses it, see
-[term-alert](https://github.com/CallumCameron/term-alert).
+[term-alert](https://github.com/calliecameron/term-alert).
 
 
 Usage
@@ -65,7 +65,7 @@ send commands back to Emacs on your local machine.
 License
 -------
 
-Copyright (C) 2014--2016 Callum J. Cameron
+Copyright (C) 2014--2021 Callie Cameron
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
