@@ -1,12 +1,12 @@
 ;;; term-cmd.el --- Send commands from programs running in term.el. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2014-2016 Callie Cameron
+;; Copyright (C) 2014-2021 Callie Cameron
 
 ;; Author: Callie Cameron <cjcameron7@gmail.com>
-;; Version: 1.1
+;; Version: 1.2
 ;; Url: https://github.com/calliecameron/term-cmd
 ;; Keywords: processes
-;; Package-Requires: ((emacs "24.0") (dash "2.12.0") (f "0.18.2"))
+;; Package-Requires: ((emacs "27.2") (dash "2.12.0") (f "0.18.2"))
 
 ;; This file is not part of GNU Emacs.
 
@@ -94,7 +94,7 @@
 Elements should be of the form (<string> . <func>) where string is the
 command to match on, and func takes two args, the command and the
 command's argument.  To run a command from the terminal, output a line
-of the form '\\eTeRmCmD <command> <arg>\\n', where arg is an arbitrary
+of the form '\\eAnSiTTeRmCmD <command> <arg>\\n', where arg is an arbitrary
 string; the function with key <command> will be called with command
 and arg.  Arg can also be omitted if it is not required.")
 
@@ -121,7 +121,7 @@ and arg.  Arg can also be omitted if it is not required.")
     (setq term-cmd--partial-cmd nil))
 
   ;; Process the commands
-  (while (string-match "\eTeRmCmD +\\(.+\\)\n" message)
+  (while (string-match "\eAnSiTTeRmCmD +\\(.+\\)\n" message)
     (let* ((matched (match-string 1 message))
            command
            arg)
@@ -148,7 +148,7 @@ and arg.  Arg can also be omitted if it is not required.")
 
   ;; If there is a partial message at the end of the string, store it
   ;; for future use.
-  (when (string-match "\eTeRmCmD.+$" message)
+  (when (string-match "\eAnSiTTeRmCmD.+$" message)
     (setq term-cmd--partial-cmd (match-string 0 message))
     (setq message (replace-match "" t t message)))
 
@@ -175,7 +175,7 @@ and arg.  Arg can also be omitted if it is not required.")
 ;;;###autoload
 (defun term-cmd--ansi-partial-end-check (message)
   "Handle partial built-in commands at the end of MESSAGE."
-  (when (string-match "\eAnSiT.+$" message)
+  (when (string-match "\eAnSiT[^T].+$" message)
     (setq term-cmd--partial-ansi-terminal-message (match-string 0 message))
     (setq message (replace-match "" t t message)))
   message)

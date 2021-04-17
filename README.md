@@ -1,5 +1,4 @@
-term-cmd
-========
+# term-cmd
 
 [![MELPA](https://melpa.org/packages/term-cmd-badge.svg)](https://melpa.org/#/term-cmd)
 [![MELPA Stable](https://stable.melpa.org/packages/term-cmd-badge.svg)](https://stable.melpa.org/#/term-cmd)
@@ -21,8 +20,7 @@ example of something that uses it, see
 [term-alert](https://github.com/calliecameron/term-alert).
 
 
-Usage
------
+## Usage
 
 To register a command:
 
@@ -48,8 +46,7 @@ well through nested shells, multiple SSH sessions, or tmux (not 100%
 reliable -- see comments in `emacs-term-cmd`).
 
 
-Installation
-------------
+## Installation
 
 Install the `term-cmd` package from MELPA.
 
@@ -62,8 +59,7 @@ SSH into; this will allow shells inside tmux or on other machines to
 send commands back to Emacs on your local machine.
 
 
-License
--------
+## License
 
 Copyright (C) 2014--2021 Callie Cameron
 

@@ -20,7 +20,7 @@ cd ~ &&
                             (\"gnu\" . \"https://elpa.gnu.org/packages/\")))
    (package-initialize)
    (package-refresh-contents)
-   (package-install-file \"${THIS_DIR}/../dist/term-cmd-1.1.tar\")
+   (package-install-file \"${THIS_DIR}/../dist/term-cmd-1.2.tar\")
    (add-to-list
      'term-cmd-commands-alist
      '(\"foobar\" . (lambda (cmd arg)
