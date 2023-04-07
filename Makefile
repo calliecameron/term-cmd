@@ -1,4 +1,11 @@
-all: test
+all: lint test
+
+.PHONY: lint
+lint:
+	shellcheck bin/emacs-term-cmd test/ansi-term-test.sh \
+		test/test-interactive.sh
+	shfmt -l -d -i 4 bin/emacs-term-cmd test/ansi-term-test.sh \
+		test/test-interactive.sh
 
 .PHONY: test
 test:

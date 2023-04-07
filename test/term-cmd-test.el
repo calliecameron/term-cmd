@@ -1,6 +1,6 @@
 ;;; term-cmd-test.el --- Term-cmd: tests.            -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Callie Cameron
+;; Copyright (C) 2023  Callie Cameron
 
 ;; Author: Callie Cameron <cjcameron7@gmail.com>
 ;; Keywords: terminals

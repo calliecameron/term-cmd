@@ -1,6 +1,6 @@
 ;;; term-cmd.el --- Send commands from programs running in term.el. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2014-2021 Callie Cameron
+;; Copyright (C) 2014-2023 Callie Cameron
 
 ;; Author: Callie Cameron <cjcameron7@gmail.com>
 ;; Version: 1.2

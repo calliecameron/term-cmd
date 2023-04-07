@@ -9,20 +9,19 @@ function usage() {
 test -z "${1}" && usage
 CMD="${1}"
 
-if [ ! -z "${2}" ]; then
+if [ -n "${2}" ]; then
     ARG=" ${2}"
 else
     ARG=''
 fi
 
-
-# Sanity check before printing; not foolproof, unfortunately (try
-# tmux, then ssh). Screen uses a different escape sequence from tmux,
-# but there doesn't seem to be a definitive way to distinguish between
-# the two. :-(
+# Sanity check before printing; not foolproof, unfortunately (try tmux, then
+# ssh). Screen uses a different escape sequence from tmux, but there doesn't
+# seem to be a definitive way to distinguish between the two. :-(
 if [[ "${TERM}" =~ 'eterm' ]]; then
     printf '\033AnSiTTeRmCmD %s%s\n' "${CMD}" "${ARG}"
-elif [ "${TERM}" = 'screen' ] && [ ! -z "${TMUX}" ] &&
-         [[ "$(tmux display-message -p '#{client_termname}')" =~ 'eterm' ]]; then
+elif [ "${TERM}" = 'screen' ] && [ -n "${TMUX}" ] &&
+    [[ "$(tmux display-message -p '#{client_termname}')" =~ 'eterm' ]]; then
+    # shellcheck disable=SC1003
     printf '\033Ptmux;\033\033AnSiTTeRmCmD %s%s\n\033\\' "${CMD}" "${ARG}"
 fi
