@@ -98,6 +98,9 @@ of the form '\\eAnSiTTeRmCmD <command> <arg>\\n', where arg is an arbitrary
 string; the function with key <command> will be called with command
 and arg.  Arg can also be omitted if it is not required.")
 
+;;;###autoload
+(defvar term-cmd-check-path t
+  "Whether to check for emacs-term-cmd being on PATH at startup.")
 
 ;; These variables allow incomplete commands at the end of input to be
 ;; stored and handled when more input arrives.
@@ -217,9 +220,11 @@ and arg.  Arg can also be omitted if it is not required.")
    term-cmd--executable-abs)
 
   (when
-      (not (string=
-            (executable-find term-cmd--executable-name)
-            term-cmd--executable-abs))
+      (and
+       term-cmd-check-path
+       (not (string=
+             (executable-find term-cmd--executable-name)
+             term-cmd--executable-abs)))
     (message "term-cmd: please add '%s' to the PATH in your environment or shell's startup file (e.g. ~/.profile, ~/.bashrc, ~/.zshrc, etc.). Term-cmd will work in shells launched directly from Emacs even if you don't, but it will only work in tmux and ssh sessions if you do." term-cmd--bin-dir)
     (add-to-list 'exec-path term-cmd--bin-dir)
     (setenv "PATH" (concat term-cmd--bin-dir path-separator (getenv "PATH"))))
