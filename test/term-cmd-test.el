@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2014-2026  Callie Cameron
 
-;; Author: Callie Cameron <cjcameron7@gmail.com>
+;; Author: Callie Cameron <callie@calliecameron.com>
 ;; Keywords: terminals
 
 ;; This program is free software; you can redistribute it and/or modify
