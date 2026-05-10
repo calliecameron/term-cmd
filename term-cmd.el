@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014-2026 Callie Cameron
 
 ;; Author: Callie Cameron <callie@calliecameron.com>
-;; Version: 1.3
+;; Version: 1.4
 ;; URL: https://github.com/calliecameron/term-cmd
 ;; Keywords: processes
 ;; Package-Requires: ((emacs "27.2") (dash "2.12.0") (f "0.18.2"))

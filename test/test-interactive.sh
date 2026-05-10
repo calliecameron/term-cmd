@@ -25,7 +25,7 @@ cd ~
                             (\"gnu\" . \"https://elpa.gnu.org/packages/\")))
    (package-initialize)
    (package-refresh-contents)
-   (package-install-file \"$(readlink -f "${THIS_DIR}/../dist/term-cmd-1.3.tar")\")
+   (package-install-file \"$(readlink -f "${THIS_DIR}/../dist/term-cmd-1.4.tar")\")
    (add-to-list
      'term-cmd-commands-alist
      '(\"foobar\" . (lambda (cmd arg)
