@@ -1,4 +1,6 @@
-# term-cmd
+# This repository has [moved to Codeberg!](https://codeberg.org/calliecameron/term-cmd)
+
+## term-cmd
 
 [![MELPA](https://melpa.org/packages/term-cmd-badge.svg)](https://melpa.org/#/term-cmd)
 [![MELPA Stable](https://stable.melpa.org/packages/term-cmd-badge.svg)](https://stable.melpa.org/#/term-cmd)
